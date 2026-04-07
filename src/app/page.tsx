@@ -74,7 +74,8 @@ export default function Home() {
     "Write on white paper using a blue/black pen.",
     "Place the paper label INSIDE the packet (so it does not get erased).",
     "Write clearly in block letters.",
-    "If you use smaller bags or sub-packets inside the main bag, write the full factory name and team name on each sub-packet too when possible.",
+    "Strongly recommended on sub-packets: if you use smaller bags inside the main package, write the date (DD/MM/YYYY), full factory name, and full team name on each sub-packet label too when you can.",
+    "That helps us match every sub-bag to you, avoids mix-ups at intake, and makes ingestion smoother for your pay and your results.",
     "Double-check your count before sealing.",
   ];
 
@@ -89,6 +90,7 @@ export default function Home() {
     "Count all SD cards carefully.",
     "Place SD cards into the ziplock bag - do not leave any loose outside.",
     "Write all 4 fields on a paper label.",
+    "If you pack into smaller sub-bags inside the main bag, strongly recommended: write date, full factory name, and full team name on each sub-packet label too (helps ingestion and tracking).",
     "Place the paper label INSIDE the bag (not outside).",
     "Seal the bag completely - press the ziplock shut fully.",
     "If no ziplock seal, fold and tape the bag shut securely.",
@@ -163,8 +165,9 @@ export default function Home() {
         <p className="text-muted-foreground mt-3 text-base sm:text-xl">
           Every returned packet must contain a paper label with the four main
           fields below. Also add your mobile number so we can reach you if
-          needed. If you split cards into smaller sub-packets, put factory name
-          and team name on those sub-labels whenever possible.
+          needed. If you split cards into smaller sub-packets, it is strongly
+          recommended to write the same date, full factory name, and full team
+          name on each sub-label too — it helps processing and assignment.
         </p>
 
         <div className="border-border-strong bg-muted mt-5 rounded-xl border-2 border-dashed p-4 sm:p-6">
