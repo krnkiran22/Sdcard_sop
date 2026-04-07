@@ -55,6 +55,15 @@ const GOOD_REFERENCE_EXAMPLES = [
       "Good model to copy for your own returns.",
     ],
   },
+  {
+    file: "good-03.jpeg",
+    title: "Good example 3 — paper label inside the pouch",
+    points: [
+      "Write all details on paper (date, factory, team, total SD card count, mobile if you use it) using pen on white paper — then put that paper inside the SD card pouch / ziplock with the cards.",
+      "The label stays protected inside the bag; ink on the plastic alone can smudge or disappear when handled.",
+      "After the paper and SD cards are inside, seal the pouch fully before handover.",
+    ],
+  },
 ] as const;
 
 export default function Home() {
@@ -253,12 +262,15 @@ export default function Home() {
         <p className="text-muted-foreground mt-3 text-base sm:text-xl">
           These are real examples of acceptable returns. Always write the{" "}
           <span className="text-foreground font-semibold">
-            total SD card count on the package
+            total SD card count
           </span>{" "}
-          (the exact number of cards inside) so we can check it at intake
-          without guesswork.
+          (exact number of cards inside) and{" "}
+          <span className="text-foreground font-semibold">
+            put your written label on paper inside the SD card pouch
+          </span>{" "}
+          so details stay readable at intake.
         </p>
-        <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {GOOD_REFERENCE_EXAMPLES.map((item, i) => (
             <figure
               key={item.file}
@@ -266,11 +278,15 @@ export default function Home() {
             >
               <Image
                 src={`/sop-good-refs/${item.file}`}
-                alt={`Good example ${i + 1}: total card count and full label on package, sealed return.`}
+                alt={
+                  item.file === "good-03.jpeg"
+                    ? `Good example ${i + 1}: details written on paper placed inside SD card pouch.`
+                    : `Good example ${i + 1}: total card count and full label on package, sealed return.`
+                }
                 width={900}
                 height={675}
                 className="h-auto w-full object-cover"
-                sizes="(max-width: 640px) 100vw, 50vw"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
               />
               <figcaption className="border-border bg-success-bg border-t px-3 py-3 text-left sm:px-4">
                 <p className="text-success text-sm font-bold sm:text-base">
@@ -282,7 +298,8 @@ export default function Home() {
                 <ul className="text-foreground mt-2 list-disc space-y-1 pl-5 text-sm sm:text-base">
                   {item.points.map((p) => (
                     <li key={p}>
-                      {p.startsWith("Total SD card count") ? (
+                      {p.startsWith("Total SD card count") ||
+                      p.startsWith("Write all details on paper") ? (
                         <strong className="font-semibold">{p}</strong>
                       ) : (
                         p
