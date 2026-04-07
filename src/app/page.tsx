@@ -36,6 +36,27 @@ const BAD_REFERENCE_EXAMPLES = [
   },
 ] as const;
 
+const GOOD_REFERENCE_EXAMPLES = [
+  {
+    file: "good-01.jpeg",
+    title: "Good example 1",
+    points: [
+      "Total SD card count is written clearly on the label or package — it must match the number of cards inside.",
+      "Date, factory name, and team name are visible and readable.",
+      "Packaging looks sealed and ready for handover.",
+    ],
+  },
+  {
+    file: "good-02.jpeg",
+    title: "Good example 2",
+    points: [
+      "Total SD card count is on the package so intake can verify without opening.",
+      "Other label fields (date, factory, team) are filled in full — not placeholders.",
+      "Good model to copy for your own returns.",
+    ],
+  },
+] as const;
+
 export default function Home() {
   const mandatoryFields = [
     {
@@ -227,15 +248,62 @@ export default function Home() {
 
       <section className="border-border bg-card mt-6 rounded-2xl border p-5 shadow-[0_2px_16px_rgba(0,0,0,0.06)] sm:mt-8 sm:p-8 print:shadow-none">
         <h2 className="text-2xl font-bold sm:text-3xl">
-          4) Bad reference — real photos (do not repeat these mistakes)
+          4) Good reference — copy this style
+        </h2>
+        <p className="text-muted-foreground mt-3 text-base sm:text-xl">
+          These are real examples of acceptable returns. Always write the{" "}
+          <span className="text-foreground font-semibold">
+            total SD card count on the package
+          </span>{" "}
+          (the exact number of cards inside) so we can check it at intake
+          without guesswork.
+        </p>
+        <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2">
+          {GOOD_REFERENCE_EXAMPLES.map((item, i) => (
+            <figure
+              key={item.file}
+              className="border-border bg-card overflow-hidden rounded-xl border shadow-[0_2px_16px_rgba(0,0,0,0.06)]"
+            >
+              <Image
+                src={`/sop-good-refs/${item.file}`}
+                alt={`Good example ${i + 1}: total card count and full label on package, sealed return.`}
+                width={900}
+                height={675}
+                className="h-auto w-full object-cover"
+                sizes="(max-width: 640px) 100vw, 50vw"
+              />
+              <figcaption className="border-border bg-success-bg border-t px-3 py-3 text-left sm:px-4">
+                <p className="text-success text-sm font-bold sm:text-base">
+                  {item.title}
+                </p>
+                <p className="text-foreground mt-1 text-xs font-semibold uppercase tracking-wide sm:text-sm">
+                  What is right (do this)
+                </p>
+                <ul className="text-foreground mt-2 list-disc space-y-1 pl-5 text-sm sm:text-base">
+                  {item.points.map((p) => (
+                    <li key={p}>
+                      {p.startsWith("Total SD card count") ? (
+                        <strong className="font-semibold">{p}</strong>
+                      ) : (
+                        p
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+      </section>
+
+      <section className="border-border bg-card mt-6 rounded-2xl border p-5 shadow-[0_2px_16px_rgba(0,0,0,0.06)] sm:mt-8 sm:p-8 print:shadow-none">
+        <h2 className="text-2xl font-bold sm:text-3xl">
+          5) Bad reference — real photos (do not repeat these mistakes)
         </h2>
         <p className="text-muted-foreground mt-3 text-base sm:text-xl">
           Below is one photo per type of mistake (duplicate photos of the same
           problem were removed). Read what is missing or wrong in each before you
           pack.
-        </p>
-        <p className="text-subtle-foreground mt-2 text-sm sm:text-base">
-          Good package examples will be added here soon.
         </p>
         <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {BAD_REFERENCE_EXAMPLES.map((item, i) => (
@@ -271,7 +339,7 @@ export default function Home() {
 
       <section className="border-border bg-card mt-6 rounded-2xl border p-5 shadow-[0_2px_16px_rgba(0,0,0,0.06)] sm:mt-8 sm:p-8 print:shadow-none">
         <h2 className="text-2xl font-bold sm:text-3xl">
-          5) How to Pack the Package
+          6) How to Pack the Package
         </h2>
         <ol className="mt-4 space-y-3 text-base sm:text-xl">
           {packingSteps.map((step, index) => (
@@ -297,14 +365,18 @@ export default function Home() {
           <p className="text-muted-foreground mt-2 text-base sm:text-xl">
             Before handover, take a clear reference photo of the packed bag. The
             label details must be fully visible in the photo: date, factory name,
-            team name, SD card count, and mobile number if you wrote one.
+            team name,{" "}
+            <span className="text-foreground font-semibold">
+              total SD card count
+            </span>{" "}
+            on the package, and mobile number if you wrote one.
           </p>
         </div>
       </section>
 
       <section className="border-border bg-card mt-6 rounded-2xl border p-5 shadow-[0_2px_16px_rgba(0,0,0,0.06)] sm:mt-8 sm:p-8 print:shadow-none">
         <h2 className="text-2xl font-bold sm:text-3xl">
-          6) Common Mistakes - Wrong vs Right
+          7) Common Mistakes - Wrong vs Right
         </h2>
         <div className="border-border mt-4 overflow-hidden rounded-xl border">
           <div className="grid grid-cols-2">
