@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import { getMetadataBase, getSiteUrl } from "@/lib/site";
 import "./globals.css";
@@ -12,6 +12,12 @@ const siteUrl = getSiteUrl();
 const title = "SD Card Return — Packaging SOP";
 const description =
   "Standard operating procedure for factory workers: how to label SD card return packages (date, factory, team, count, mobile), pack and seal correctly, avoid common mistakes, and verify before handover. Mobile-friendly, print-friendly.";
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#000000",
+};
 
 export const metadata: Metadata = {
   metadataBase: getMetadataBase(),
