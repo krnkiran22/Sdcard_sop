@@ -20,9 +20,22 @@ npm start
 
 ## Deploy on Vercel
 
-1. Push this repo to GitHub.
-2. In [Vercel](https://vercel.com/new), import the repository.
-3. Use default Next.js settings (framework preset: Next.js, build: `next build`, output: Next.js default).
+This repo includes **`vercel.json`** so Vercel treats the project as **Next.js** (`framework: "nextjs"`) and runs `npm install` + `npm run build`. Node **20+** is set via `.nvmrc` and `package.json` `engines`.
+
+1. Import [github.com/krnkiran22/Sdcard_sop](https://github.com/krnkiran22/Sdcard_sop) in [Vercel New Project](https://vercel.com/new).
+2. **Root Directory:** leave **empty** (repository root, where `package.json` lives). Do **not** set a subfolder unless the app moves.
+3. **Framework Preset:** Next.js (auto-detected).
+4. **Build Command:** `npm run build` (default; matches `vercel.json`).
+5. **Output Directory:** leave **empty** — Next.js on Vercel must **not** use `out` or other static folders unless you configured `output: 'export'` (this app does not).
+6. Deploy, then open the **production** URL from the dashboard (or wait a few seconds if the first preview iframe shows a transient error).
+
+### If you see `404 NOT_FOUND` on Vercel
+
+Usually the deployment settings or URL are wrong, not the repo:
+
+- Confirm **Root Directory** is blank and **Output Directory** override is blank.
+- Open the deployment **Domains** link (e.g. `*.vercel.app`) from the deployment detail page, not an old or copied URL.
+- Redeploy after fixing settings: **Deployments → … → Redeploy**.
 
 ### Environment (optional, recommended on Vercel)
 
