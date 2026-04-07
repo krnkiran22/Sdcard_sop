@@ -1,20 +1,40 @@
 import Image from "next/image";
 
-const BAD_REF_IMAGES = [
-  "01.jpeg",
-  "02.jpeg",
-  "03.jpeg",
-  "04.jpeg",
-  "05.jpeg",
-  "06.jpeg",
-  "07.jpeg",
-  "08.jpeg",
-  "09.jpeg",
-  "10.jpeg",
-  "11.jpeg",
-  "12.jpeg",
-  "13.jpeg",
-];
+/** One photo per problem type; duplicates and examples 11 & 13 removed from the set. */
+const BAD_REFERENCE_EXAMPLES = [
+  {
+    file: "01.jpeg",
+    title: "Missing team name",
+    problems: ["No team name mentioned on the label or package."],
+  },
+  {
+    file: "02.jpeg",
+    title: "Bad packing",
+    problems: ["Bad packing — cards or bag spilled / loose in the box."],
+  },
+  {
+    file: "03.jpeg",
+    title: "Almost no information",
+    problems: ["No real info on the package — looks empty or unlabeled."],
+  },
+  {
+    file: "04.jpeg",
+    title: "Date, team, and factory missing",
+    problems: [
+      "No date written.",
+      "No team name written.",
+      "No factory name written.",
+    ],
+  },
+  {
+    file: "06.jpeg",
+    title: "Team and factory missing",
+    problems: [
+      "No team name written.",
+      "No factory name written.",
+    ],
+  },
+] as const;
 
 export default function Home() {
   const mandatoryFields = [
@@ -54,6 +74,7 @@ export default function Home() {
     "Write on white paper using a blue/black pen.",
     "Place the paper label INSIDE the packet (so it does not get erased).",
     "Write clearly in block letters.",
+    "If you use smaller bags or sub-packets inside the main bag, write the full factory name and team name on each sub-packet too when possible.",
     "Double-check your count before sealing.",
   ];
 
@@ -142,7 +163,8 @@ export default function Home() {
         <p className="text-muted-foreground mt-3 text-base sm:text-xl">
           Every returned packet must contain a paper label with the four main
           fields below. Also add your mobile number so we can reach you if
-          needed.
+          needed. If you split cards into smaller sub-packets, put factory name
+          and team name on those sub-labels whenever possible.
         </p>
 
         <div className="border-border-strong bg-muted mt-5 rounded-xl border-2 border-dashed p-4 sm:p-6">
@@ -205,29 +227,39 @@ export default function Home() {
           4) Bad reference — real photos (do not repeat these mistakes)
         </h2>
         <p className="text-muted-foreground mt-3 text-base sm:text-xl">
-          These are examples of packages or labels that caused problems. Your
-          packet should not look like this: unclear writing, missing names,
-          wrong surface, or incomplete information.
+          Below is one photo per type of mistake (duplicate photos of the same
+          problem were removed). Read what is missing or wrong in each before you
+          pack.
         </p>
         <p className="text-subtle-foreground mt-2 text-sm sm:text-base">
           Good package examples will be added here soon.
         </p>
         <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {BAD_REF_IMAGES.map((file, i) => (
+          {BAD_REFERENCE_EXAMPLES.map((item, i) => (
             <figure
-              key={file}
+              key={item.file}
               className="border-border bg-card overflow-hidden rounded-xl border shadow-[0_2px_16px_rgba(0,0,0,0.06)]"
             >
               <Image
-                src={`/sop-bad-refs/${file}`}
-                alt={`Bad reference example ${i + 1} — do not package or label like this`}
+                src={`/sop-bad-refs/${item.file}`}
+                alt={`Bad example ${i + 1}: ${item.title}. ${item.problems.join(" ")}`}
                 width={900}
                 height={675}
                 className="h-auto w-full object-cover"
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
               />
-              <figcaption className="border-border bg-destructive-bg text-destructive border-t px-3 py-2 text-center text-sm font-semibold sm:text-base">
-                Bad example {i + 1} — avoid this
+              <figcaption className="border-border bg-destructive-bg border-t px-3 py-3 text-left sm:px-4">
+                <p className="text-destructive text-sm font-bold sm:text-base">
+                  Bad example {i + 1}: {item.title}
+                </p>
+                <p className="text-foreground mt-1 text-xs font-semibold uppercase tracking-wide sm:text-sm">
+                  What is wrong / missing
+                </p>
+                <ul className="text-foreground mt-2 list-disc space-y-1 pl-5 text-sm sm:text-base">
+                  {item.problems.map((p) => (
+                    <li key={p}>{p}</li>
+                  ))}
+                </ul>
               </figcaption>
             </figure>
           ))}
