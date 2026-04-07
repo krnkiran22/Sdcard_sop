@@ -110,7 +110,7 @@ export default function Home() {
   ];
 
   const dontItems = [
-    "Do not write directly on plastic/polythene with marker (it gets erased when touched).",
+    "Do not write on the ziplock / zip bag or outside of the plastic pouch with marker — the writing can smudge or get rubbed off and erased when the bag is touched, stacked, or shipped.",
     "Do not leave any field blank.",
     "Do not write abbreviations only - always write the full name.",
     "Do not seal the packet without counting the SD cards.",
