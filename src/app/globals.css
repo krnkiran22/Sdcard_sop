@@ -1,26 +1,77 @@
 @import "tailwindcss";
 
+/* Aligned with buildai_kiran / ingestion ops UI — white, black, neutral grays */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: #ffffff;
+  --bg-subtle: #f9f9f9;
+  --bg-muted: #f4f4f4;
+  --border: #e5e5e5;
+  --border-strong: #d0d0d0;
+  --text-primary: #111111;
+  --text-secondary: #444444;
+  --text-muted: #888888;
+  --text-placeholder: #bbbbbb;
+  --action: #000000;
+  --action-text: #ffffff;
+  --action-hover: #222222;
+  --error: #d11111;
+  --error-bg: #fff5f5;
+  --success: #1a7f37;
+  --success-bg: #f0fff4;
+  --warning: #854d0e;
+  --warning-bg: #fefce8;
+  --font-ui: var(--font-inter), "Inter", "Segoe UI", "Helvetica Neue", Arial,
+    sans-serif;
+  --font-mono-ui: "JetBrains Mono", "SFMono-Regular", ui-monospace, Menlo,
+    Consolas, monospace;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Page shell (matches buildai_kiran main-content feel) */
+  --color-background: var(--bg-subtle);
+  --color-foreground: var(--text-primary);
+  --color-card: var(--bg);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-muted: var(--bg-muted);
+  --color-muted-foreground: var(--text-secondary);
+  --color-subtle-foreground: var(--text-muted);
+  --color-action: var(--action);
+  --color-action-foreground: var(--action-text);
+  --color-destructive: var(--error);
+  --color-destructive-bg: var(--error-bg);
+  --color-success: var(--success);
+  --color-success-bg: var(--success-bg);
+  --font-sans: var(--font-ui);
+  --font-mono: var(--font-mono-ui);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  background: var(--bg-subtle);
+  color: var(--text-primary);
+  font-family: var(--font-ui);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: #e5e5e5;
+}
+
+@media print {
+  body {
+    background: #ffffff;
+  }
 }
