@@ -39,29 +39,29 @@ const BAD_REFERENCE_EXAMPLES = [
 const GOOD_REFERENCE_EXAMPLES = [
   {
     file: "good-01.jpeg",
-    title: "Good example 1",
+    title: "Good example 1 — sealing the package",
     points: [
-      "Total SD card count is written clearly on the label or package — it must match the number of cards inside.",
-      "Date, factory name, and team name are visible and readable.",
-      "Packaging looks sealed and ready for handover.",
+      "The package is sealed properly — ziplock pressed fully shut along the whole line, or bag folded and taped if there is no ziplock.",
+      "Nothing should fall out: give the bag a light shake before handover.",
+      "Outer packaging looks secure and ready to travel — this is the sealing standard to copy.",
     ],
   },
   {
     file: "good-02.jpeg",
-    title: "Good example 2",
+    title: "Good example 2 — every detail filled in",
     points: [
-      "Total SD card count is on the package so intake can verify without opening.",
-      "Other label fields (date, factory, team) are filled in full — not placeholders.",
-      "Good model to copy for your own returns.",
+      "Total SD card count is written and matches the number of cards inside.",
+      "Date, factory name, team name, and count are all completed — no empty lines and no writing only ‘factory name’ / ‘team name’ without the real names.",
+      "If you add a mobile number, it is written clearly too — everything on the label should be readable at intake.",
     ],
   },
   {
     file: "good-03.jpeg",
     title: "Good example 3 — paper label inside the pouch",
     points: [
-      "Write all details on paper (date, factory, team, total SD card count, mobile if you use it) using pen on white paper — then put that paper inside the SD card pouch / ziplock with the cards.",
-      "The label stays protected inside the bag; ink on the plastic alone can smudge or disappear when handled.",
-      "After the paper and SD cards are inside, seal the pouch fully before handover.",
+      "Write all details on paper (date, factory, team, total SD card count, mobile if you use it) with pen on white paper, then place that paper inside the SD card pouch / ziplock with the cards.",
+      "Keeping the paper inside protects the writing; marker on plastic alone can smudge or rub off.",
+      "Put paper and cards in first, then seal the pouch using the same sealing rules as example 1.",
     ],
   },
 ] as const;
@@ -260,15 +260,19 @@ export default function Home() {
           4) Good reference — copy this style
         </h2>
         <p className="text-muted-foreground mt-3 text-base sm:text-xl">
-          These are real examples of acceptable returns. Always write the{" "}
+          Example 1 shows correct{" "}
+          <span className="text-foreground font-semibold">sealing</span>; example
+          2 shows every field{" "}
+          <span className="text-foreground font-semibold">filled in</span>{" "}
+          (including{" "}
           <span className="text-foreground font-semibold">
             total SD card count
-          </span>{" "}
-          (exact number of cards inside) and{" "}
+          </span>
+          ); example 3 shows the{" "}
           <span className="text-foreground font-semibold">
-            put your written label on paper inside the SD card pouch
-          </span>{" "}
-          so details stay readable at intake.
+            paper label inside the pouch
+          </span>
+          .
         </p>
         <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {GOOD_REFERENCE_EXAMPLES.map((item, i) => (
@@ -279,9 +283,11 @@ export default function Home() {
               <Image
                 src={`/sop-good-refs/${item.file}`}
                 alt={
-                  item.file === "good-03.jpeg"
-                    ? `Good example ${i + 1}: details written on paper placed inside SD card pouch.`
-                    : `Good example ${i + 1}: total card count and full label on package, sealed return.`
+                  item.file === "good-01.jpeg"
+                    ? `Good example 1: package sealed correctly for handover.`
+                    : item.file === "good-02.jpeg"
+                      ? `Good example 2: all label details filled including total card count.`
+                      : `Good example 3: paper label placed inside SD card pouch.`
                 }
                 width={900}
                 height={675}
@@ -298,7 +304,8 @@ export default function Home() {
                 <ul className="text-foreground mt-2 list-disc space-y-1 pl-5 text-sm sm:text-base">
                   {item.points.map((p) => (
                     <li key={p}>
-                      {p.startsWith("Total SD card count") ||
+                      {p.startsWith("The package is sealed properly") ||
+                      p.startsWith("Total SD card count") ||
                       p.startsWith("Write all details on paper") ? (
                         <strong className="font-semibold">{p}</strong>
                       ) : (
