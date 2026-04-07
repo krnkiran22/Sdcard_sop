@@ -18,6 +18,16 @@ npm run build
 npm start
 ```
 
+### Social preview image (Open Graph / Twitter)
+
+The files `src/app/opengraph-image.png` and `src/app/twitter-image.png` are **screenshots** of the top of the home page (1200×630). Regenerate them after big layout changes:
+
+```bash
+npm run build
+PORT=3456 npm run start   # in one terminal
+CAPTURE_PORT=3456 npm run capture:og   # in another; then stop the server
+```
+
 ## Deploy on Vercel
 
 This repo includes **`vercel.json`** so Vercel treats the project as **Next.js** (`framework: "nextjs"`) and runs `npm install` + `npm run build`. Node **20+** is set via `.nvmrc` and `package.json` `engines`.
